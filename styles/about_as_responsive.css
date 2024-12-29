@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+    .row {
+        grid-template-columns: 1fr;
+        padding: 2rem 0;
+    }
+
+    .row .imgwrapper,
+    .row .contentwrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .row .imgwrapper {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .row .contentwrapper {
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+    }
+}

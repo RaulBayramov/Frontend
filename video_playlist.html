@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/video_playlist_styles.css">
+
+</head>
+
+<body>
+    <div class="header-container"></div>
+    <div class="container">
+        <div class="main-video">
+            <video src="videos/The Science of Stress  Essentials of Teenage Health/1. Introduction.mp4" muted
+                controls></video>
+            <h3 class="title">Introduction</h3>
+        </div>
+        <div class="video_playslist">
+
+            <div class="video active">
+                <video
+                    src="./videos/The Science of Stress  Essentials of Teenage Health/2. Stress A Friend or A Foe The Surprising Truth.mp4"
+                    muted controls poster="thumbnails/data_struct_chincaze.png"></video>
+                <h3 class="title">Stress A Friend or A Foe The Surprising Truth</h3>
+            </div>
+            <div class="video">
+                <video
+                    src="./videos/The Science of Stress  Essentials of Teenage Health/3. Why Your Body is Begging for a Break.mp4"
+                    muted controls poster="thumbnails/data_struct_chincaze.png"></video>
+                <h3 class="title">Why Your Body is Begging for a Break</h3>
+            </div>
+            <div class="video">
+                <video
+                    src="./videos/The Science of Stress  Essentials of Teenage Health/4. The Secret Weapon Against Stress.mp4"
+                    muted controls poster="thumbnails/data_struct_chincaze.png"></video>
+                <h3 class="title">The Secret Weapon Against Stress</h3>
+            </div>
+            <div class="video">
+                <video
+                    src="./videos/The Science of Stress  Essentials of Teenage Health/5. The Anti-Stress Diet Eat Your Way to Calm.mp4"
+                    muted controls poster="thumbnails/data_struct_chincaze.png"></video>
+                <h3 class="title">The Anti-Stress Diet Eat Your Way to Calm</h3>
+            </div>
+            <div class="video">
+                <video
+                    src="./videos/The Science of Stress  Essentials of Teenage Health/8. Sleep Your Way to Stress Free The Surprising Connection.mp4"
+                    muted controls poster="thumbnails/data_struct_chincaze.png"></video>
+                <h3 class="title">video title goes here</h3>
+            </div>
+        </div>
+    </div>
+    <script>
+        let listVideo = document.querySelectorAll(".container .video");
+        let mainVideo = document.querySelector(".main-video video");
+        let title = document.querySelector(".main-video .title");
+        let i = 1;
+        listVideo.forEach(video => {
+
+            video.children[1].innerHTML = i < 10 ? `0${i} ${video.children[1].innerHTML}` : `${i} ${video.children[1].innerHTML}`;
+            i++;
+            video.onclick = () => {
+                listVideo.forEach(video => video.classList.remove('active'));
+                video.classList.add('active');
+                if (video.classList.contains('active')) {
+                    let src = video.children[0].getAttribute('src');
+                    mainVideo.setAttribute("src", src);
+                    let text = video.children[1].innerHTML;
+                    title.innerHTML = text;
+                }
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>

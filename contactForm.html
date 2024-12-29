@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/main_page_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/stylesfor_yutubdan.css">
+    <link rel="stylesheet" href="styles/contactForm.css">
+    <title>Tork/demo.ge/ContactForm</title>
+</head>
+
+<body>
+    <special-header></special-header>
+    <div class="container">
+        <span class="big-circle"></span>
+        <div class="form">
+            <div class="contact-info">
+                <h3 class="title">Let's get in touch</h3>
+                <p class="text">
+                    We are here to assist you. Please feel free to reach out to us with any questions or inquiries.
+                </p>
+
+                <div class="info">
+                    <div class="information">
+                        <img src="./images_/icons/simple-location-icon-png-22.png" class="icon" alt="" />
+                        <p> Address: 1 Ilia Tchavtchavadze Avenue, Academic Building I, 0179 Tbilisi, Georgia.</p>
+                    </div>
+                    <div class="information">
+                        <img src="./images_/icons/png-clipart-email-icon-black-circle-envelope-email-icons.png"
+                            class="icon" alt="" />
+                        <p>Email: raul.bairmaov633@hum.tsu.edu.ge or academicaffairs@tsu.ge</p>
+                    </div>
+                    <div class="information">
+                        <img src="./images_/icons/png-transparent-computer-icons-mobile-phones-telephone-email-home-business-phones-phone-icon-miscellaneous-angle-service-thumbnail.png"
+                            class="icon" alt="" />
+                        <p> Phone: (+995 32) 2 25 04 84.</p>
+                    </div>
+                </div>
+
+                <div class="social-media">
+                    <p>Connect with us :</p>
+                    <div class="social-icons">
+                        <a href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <span class="circle one"></span>
+                <span class="circle two"></span>
+
+                <form id="contactForm" action="index.html" autocomplete="off">
+                    <h3 class="title">Contact us</h3>
+                    <div class="input-container">
+                        <input type="text" name="name" class="input" />
+                        <label for="">Username</label>
+                        <span>Username</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" name="email" class="input" />
+                        <label for="">Email</label>
+                        <span>Email</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="tel" name="phone" class="input" />
+                        <label for="">Phone</label>
+                        <span>Phone</span>
+                    </div>
+                    <div class="input-container textarea">
+                        <textarea name="message" class="input"></textarea>
+                        <label for="">Message</label>
+                        <span>Message</span>
+                    </div>
+                    <input type="submit" value="Send" class="btn" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <special-footer></special-footer>
+    <script type="module" src="../main_page/js_files/shares/headerFooterManager.js"></script>
+    <script type="module" src="../main_page/js_files/contactForm.js"></script>
+</body>
+
+</html>
