@@ -28,7 +28,7 @@ h3 {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 370px));
     gap: 0.5rem;
     margin-bottom: 30px;
     padding: 1rem;

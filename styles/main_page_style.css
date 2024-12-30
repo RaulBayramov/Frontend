@@ -8,14 +8,9 @@ html,
 body {
     background-color: #fff;
     background-size: cover;
-    background-position: center;
     margin: 0;
     height: 100%;
-    /* Sayfa yüksekliğini ekranın tamamına ayarlar */
-    margin: 0;
-    /* Varsayılan dış boşlukları sıfırlar */
     padding: 0;
-    /* Varsayılan iç boşlukları sıfırlar */
     font-family: 'Roboto', sans-serif;
 }
 
@@ -35,7 +30,8 @@ a:hover {
 
 header {
     position: relative;
-    padding: 0 2rem;
+    padding: 0;
+    padding: 0 1.5rem;
     width: 100%;
     background-color: #fff;
 }
@@ -66,40 +62,13 @@ header {
     display: none;
 }
 
-/* .navbar .search_btn {
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-} */
-
-/* .action_btn {
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2 ease;
-    color: #121212;
-    //padding: 0 10px; 
-} */
-
-/* .action_btn:hover {
-    scale: 1.05;
-    color: #fff;
-}
-
-.action_btn:active {
-    scale: 0.95;
-} */
-
 
 /* dropdown menu */
 .dropdown_menu {
     display: none;
     position: absolute;
     right: 2rem;
-    top: 60px;
+    top: 4.5rem;
     width: 300px;
     background-color: #fafafa;
     backdrop-filter: blur(15px);
@@ -108,7 +77,6 @@ header {
     height: 0;
     transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 10;
-
 }
 
 .dropdown_menu li {
@@ -119,7 +87,6 @@ header {
 }
 
 .dropdown_menu .action_btn {
-
     width: 100%;
     display: flex;
     justify-content: center;
@@ -171,12 +138,12 @@ header {
     cursor: pointer;
     padding: 10px, 20px;
     background-color: #fff;
-    border-radius: 30px;
+    border-radius: 0.3rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .search-container input {
-    width: 15rem;
+    width: 100%;
     outline: none;
     border: none;
     font-weight: 500;
@@ -189,7 +156,7 @@ header {
 }
 
 .search-container a {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     justify-self: end;
 }
 
@@ -282,6 +249,9 @@ header {
     gap: 2rem;
     align-items: center;
     justify-content: end;
+    height: 4.5rem;
+    padding: 0;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -319,10 +289,6 @@ header {
         transform: scale(0.95);
         gap: 0;
     }
-
-    header {
-        padding: 0 0.8rem;
-    }
 }
 
 @media(max-width: 576px) {
@@ -331,6 +297,26 @@ header {
         width: unset;
     }
 
+    .search-input {
+        outline: none;
+    }
+
+    header {
+        padding: 0 1rem;
+    }
+
+    .navbar .logo a {
+        font-size: 1.2rem;
+    }
+
+    .cart-icon {
+        transform: scale(0.9);
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 @media(max-width: 376px) {

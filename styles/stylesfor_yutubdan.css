@@ -86,11 +86,6 @@
     }
 }
 
-@media only screen and (max-width: 900px) {
-    header {
-        padding: 0 20px;
-    }
-}
 
 /* features section */
 .features {
@@ -102,7 +97,7 @@
 
 .features .fea-base {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 1rem;
     margin-top: 50px;
 
