@@ -15,6 +15,7 @@ export function header() {
         if (window.innerWidth <= 992) {
             navbar.insertBefore(searchContainer, cart);
             navbar.insertBefore(toogleBtn, logo);
+            logo.style.display = "block";  //searcbardan etkilenmemm icin
         }
         else {
             navbar.insertBefore(logo, links);
@@ -39,6 +40,7 @@ export function header() {
         }
         else {
             searchContainer.style.width = (window.innerWidth * 0.25) + 'px';
+
         }
     }
     searchContainer.addEventListener('click', (event) => {

@@ -29,7 +29,7 @@ function renderCart() {
                         </a>
                     </p>
                     <p class="video-stats">
-                        ${matchCourse.videoInfo.viewCount} views &#183; ${matchCourse.videoInfo.loadedTime}
+                        ${matchCourse.videoInfo.viewCount} views &#183; ${matchCourse.timeAgo()}
                     </p>
                     <span class="delete-quantity-link link-primary js-delete-link" data-course-id="${matchCourse.id}">
                         Delete

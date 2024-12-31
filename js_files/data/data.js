@@ -1,3 +1,4 @@
+
 class Course {
     name;
     id;
@@ -21,6 +22,29 @@ class Course {
     courseInfo() {
         return `<div class="marker"><span class="courseType">#${this.type} </span>
         </div>`
+    }
+    timeAgo() {
+        const todayDate = new Date();
+        const uploadDate = new Date(this.videoInfo.uploadDate);
+        const diffInMs = todayDate - uploadDate;
+        const yearDiff = todayDate.getFullYear() - uploadDate.getFullYear(); // Yıl farkı
+        const monthDiff = todayDate.getMonth() - uploadDate.getMonth(); // Ay farkı
+        const diffInMonths = (yearDiff * 12) + monthDiff; // Toplam ay farkı
+        const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24)); // Gün cinsine çevir
+        const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60)); // Saat cinsine çevir
+        const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Dakika cinsine çevir
+        if (diffInMonths > 0) {
+            return `${monthDiff} month ago`;
+        }
+        else if (diffInDays > 0) {
+            return `${diffInDays} days ago`;
+        }
+        else if (diffInHours > 0) {
+            return `${diffInHours} hours ago`;
+        }
+        else {
+            return `${diffInMinutes} minutes ago`;
+        }
     }
 }
 class ProgramingCourse extends Course {
@@ -58,7 +82,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/operating-system-t.jpg',
         videoInfo: {
             viewCount: 8000,
-            loadedTime: '15.05.2024',
+            uploadDate: "2024-12-31T16:00:00",
             videoLength: 43200
         },
         type: 'Programing',
@@ -76,7 +100,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/Discrete-Mathematics-Tutorial.jpg',
         videoInfo: {
             viewCount: 8500,
-            loadedTime: '01.07.2024',
+            uploadDate: "2024-01-31T10:00:00",
             videoLength: 36000
         },
         type: 'Mathematics',
@@ -94,7 +118,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/Linear-Algebra-in-Machine-Learning.png',
         videoInfo: {
             viewCount: 9400,
-            loadedTime: '03.07.2024',
+            uploadDate: "2024-10-31T11:00:00",
             videoLength: 42000
         },
         type: 'Mathematics',
@@ -112,7 +136,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/haskell.jpg',
         videoInfo: {
             viewCount: 7800,
-            loadedTime: '05.07.2024',
+            uploadDate: "2024-07-31T10:30:00",
             videoLength: 48000
         },
         type: 'Programing',
@@ -130,7 +154,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/statistics.jpg',
         videoInfo: {
             viewCount: 10200,
-            loadedTime: '08.07.2024',
+            uploadDate: "2024-02-21T15:00:00",
             videoLength: 54000
         },
         type: 'Mathematics',
@@ -148,7 +172,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/stressMenegment.webp',
         videoInfo: {
             viewCount: 456,
-            loadedTime: '01.07.2024',
+            uploadDate: "2024-02-01T10:00:00",
             videoLength: 11000
         },
         type: 'Psychology'
@@ -165,7 +189,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/c++.png',
         videoInfo: {
             viewCount: 1200,
-            loadedTime: '10.07.2024',
+            uploadDate: "2024-04-01T15:01:00",
             videoLength: 44000
         },
         type: 'Programing',
@@ -183,7 +207,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/Office365-all-icons-750x500.png',
         videoInfo: {
             viewCount: 9290,
-            loadedTime: '10.07.2024',
+            uploadDate: "2024-10-11T10:00:00",
             videoLength: 24000
         },
         type: 'Programing',
