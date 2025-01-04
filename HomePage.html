@@ -109,28 +109,6 @@
         <special-footer></special-footer>
         <script type="module" src="./js_files/shares/headerFooterManager.js"></script>
         <script type="module" src="js_files/HomePage.js" defer></script>
-        <script>
-            function timeAgo(uploadDate) {
-                const currentDate = new Date(); // Mevcut tarih
-                const uploadedDate = new Date(uploadDate); // Yüklenme tarihi
-                const diffInMs = currentDate - uploadedDate; // Farkı milisaniye cinsinden hesapla
-                const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24)); // Gün cinsine çevir
-                const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60)); // Saat cinsine çevir
-                const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Dakika cinsine çevir
-
-                if (diffInDays > 0) {
-                    return `${diffInDays} gün önce`;
-                } else if (diffInHours > 0) {
-                    return `${diffInHours} saat önce`;
-                } else {
-                    return `${diffInMinutes} dakika önce`;
-                }
-            }
-
-            // Örnek Kullanım:
-            const uploadDate = "2024-12-31T10:00:00"; // Video yüklenme tarihi
-            console.log(timeAgo(uploadDate)); // Çıktı: "3 gün önce"
-        </script>
 </body>
 
 </html>

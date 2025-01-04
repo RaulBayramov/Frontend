@@ -1,4 +1,4 @@
-
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 class Course {
     name;
     id;
@@ -24,28 +24,38 @@ class Course {
         </div>`
     }
     timeAgo() {
-        const todayDate = new Date();
-        const uploadDate = new Date(this.videoInfo.uploadDate);
-        const diffInMs = todayDate - uploadDate;
-        const yearDiff = todayDate.getFullYear() - uploadDate.getFullYear(); // Yıl farkı
-        const monthDiff = todayDate.getMonth() - uploadDate.getMonth(); // Ay farkı
-        const diffInMonths = (yearDiff * 12) + monthDiff; // Toplam ay farkı
-        const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24)); // Gün cinsine çevir
-        const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60)); // Saat cinsine çevir
-        const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Dakika cinsine çevir
-        if (diffInMonths > 0) {
-            return `${monthDiff} month ago`;
+        const today = dayjs();
+        const uploadDate = dayjs(this.videoInfo.uploadDate);
+        const diffYear = today.diff(uploadDate, 'year');
+        const diffMonth = today.diff(uploadDate, 'month');
+        const diffWeek = today.diff(uploadDate, 'week');
+        const diffDay = today.diff(uploadDate, 'day');
+        const diffHour = today.diff(uploadDate, 'hour');
+        const diffMinute = today.diff(uploadDate, 'minute');
+        const diffSecond = today.diff(uploadDate, 'second');
+        if (diffYear > 0) {
+            return `${diffYear} year${diffYear > 1 ? 's' : ''} ago`;
         }
-        else if (diffInDays > 0) {
-            return `${diffInDays} days ago`;
+        else if (diffMonth > 0) {
+            return `${diffMonth} month${diffMonth > 1 ? 's' : ''} ago`;
         }
-        else if (diffInHours > 0) {
-            return `${diffInHours} hours ago`;
+        else if (diffWeek > 0) {
+            return `${diffWeek} week${diffWeek > 1 ? 's' : ''} ago`;
+        }
+        else if (diffDay > 0) {
+            return `${diffDay} day${diffDay > 1 ? 's' : ''} ago`;
+        }
+        else if (diffHour > 0) {
+            return `${diffHour} hour${diffHour > 1 ? 's' : ''} ago`;
+        }
+        else if (diffMinute > 0) {
+            return `${diffMinute} minute${diffMinute > 1 ? 's' : ''} ago`;
         }
         else {
-            return `${diffInMinutes} minutes ago`;
+            return `${diffSecond} second${diffSecond > 1 ? 's' : ''} ago`;
         }
     }
+
 }
 class ProgramingCourse extends Course {
     programingLanguage;
@@ -82,7 +92,7 @@ export let courses = [
         thumbnail: './images_/thumbnails/operating-system-t.jpg',
         videoInfo: {
             viewCount: 8000,
-            uploadDate: "2024-12-31T16:00:00",
+            uploadDate: "2025-01-04T20:28:00",
             videoLength: 43200
         },
         type: 'Programing',
