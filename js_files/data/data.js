@@ -1,4 +1,5 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { videoLengthFormat } from '../utils/videoTime.js';
 class Course {
     name;
     id;
@@ -17,7 +18,7 @@ class Course {
         this.type = course.type;
     }
     getVideoLength() {
-        return ` ${(this.videoInfo.videoLength / 3600).toFixed(1)}`
+        return videoLengthFormat(this.videoInfo.videoLength);
     }
     courseInfo() {
         return `<div class="marker"><span class="courseType">#${this.type} </span>
@@ -55,7 +56,6 @@ class Course {
             return `${diffSecond} second${diffSecond > 1 ? 's' : ''} ago`;
         }
     }
-
 }
 class ProgramingCourse extends Course {
     programingLanguage;
@@ -93,7 +93,7 @@ export let courses = [
         videoInfo: {
             viewCount: 8000,
             uploadDate: "2025-01-04T20:28:00",
-            videoLength: 43200
+            videoLength: 43205
         },
         type: 'Programing',
         programingLanguage: 'Pyton'

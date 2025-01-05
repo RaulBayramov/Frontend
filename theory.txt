@@ -1,0 +1,317 @@
+-> manula testing: **Open the website and try out the code**
+**Disadvantages of Manual Testing**
+1. Hard to test every situation
+2. Hard to re-test
+
+-> **Automated Testing** = using code to test code
+situation = test case
+**2 Types of Test Cases**
+1. **Basic test cases**  
+   = tests if the code is working
+2. **Edge cases**  
+   = test with values that are tricky
+
+
+
+### **1. Test Suite**
+- **Definition**: A collection of test cases grouped together to test a particular functionality or system.
+- **Purpose**: Ensures related test cases are executed together for better organization and comprehensive testing.
+- **Example**: A login test suite might include test cases for valid login, invalid login, password reset, etc.
+
+---
+
+### **2. Test Case**
+- **Definition**: A specific set of inputs, execution conditions, and expected outcomes to verify a particular feature of an application.
+- **Purpose**: Confirms whether a specific feature works as intended.
+- **Components**:
+  - **Test Case ID**: Unique identifier for the test case.
+  - **Description**: What the test case is validating.
+  - **Preconditions**: Any setup required before the test.
+  - **Steps**: Actions to perform.
+  - **Expected Result**: The desired outcome.
+- **Example**: 
+  - **ID**: TC001
+  - **Description**: Verify login with valid credentials.
+  - **Steps**:
+    1. Navigate to the login page.
+    2. Enter valid username and password.
+    3. Click the "Login" button.
+  - **Expected Result**: User is logged in successfully and redirected to the dashboard.
+
+---
+
+### **3. Basic Test Cases**
+- **Definition**: Test cases designed to cover standard or expected use cases of a feature or system.
+- **Purpose**: Ensures core functionality works as expected under normal conditions.
+- **Examples**:
+  1. Logging in with valid credentials.
+  2. Searching for an item using its exact name.
+  3. Adding a single item to a shopping cart.
+
+---
+
+### **4. Edge Test Cases**
+- **Definition**: Test cases that validate the behavior of the system under extreme or unusual conditions.
+- **Purpose**: Ensures the application can handle boundary conditions, invalid inputs, or unusual scenarios gracefully.
+- **Examples**:
+  1. Logging in with a username that has 256 characters (boundary testing).
+  2. Entering a negative value for age in a user profile form.
+  3. Submitting a search query with special characters like `!@#$%^&*()`.
+
+---
+
+### **Comparison: Basic vs Edge Test Cases**
+
+| **Aspect**          | **Basic Test Cases**                                | **Edge Test Cases**                              |
+|----------------------|----------------------------------------------------|-------------------------------------------------|
+| **Focus**           | Normal or common user behavior                     | Boundary, extreme, or invalid scenarios         |
+| **Purpose**         | Verify core functionality                          | Check system robustness and error handling      |
+| **Example Input**   | Regular username and password                      | Extremely long username or SQL injection input  |
+| **Outcome**         | Ensures feature works in standard scenarios        | Identifies how the system behaves under stress  |
+
+Would you like further examples or help with designing test cases for a specific feature?
+
+**********************************************************************************************************************************************************
+
+### **External Libraries in JavaScript** (Brief Explanation)
+
+External libraries in JavaScript are collections of pre-written code designed to simplify tasks and enhance your development process. They allow you to leverage reusable functionality instead of writing everything from scratch. These libraries are widely used for everything from DOM manipulation to advanced data visualization.
+
+---
+
+### **How They Work**
+1. **Download or Install**:
+   - Use a package manager like **NPM (Node Package Manager)** to install:  
+     ```bash
+     npm install <library-name>
+     ```
+   - Or use a `<script>` tag to include it from a CDN:
+     ```html
+     <script src="https://cdn.jsdelivr.net/npm/<library-name>.min.js"></script>
+     ```
+
+2. **Import into Code**:
+   - Modern JavaScript (ES6+):
+     ```javascript
+     import { functionName } from 'library-name';
+     ```
+   - CommonJS:
+     ```javascript
+     const library = require('library-name');
+     ```
+
+3. **Use Library Functions**:
+   - Call the functions or classes provided by the library to perform specific tasks.
+
+---
+
+### **Examples of Popular JavaScript Libraries**
+1. **jQuery**: Simplifies DOM manipulation and AJAX.
+   ```javascript
+   $('#element').hide(); // Hides an element with id "element"
+   ```
+
+2. **Lodash**: Provides utility functions for working with arrays, objects, and strings.
+   ```javascript
+   import _ from 'lodash';
+   const arr = [1, 2, 3, 4];
+   console.log(_.reverse(arr)); // Output: [4, 3, 2, 1]
+   ```
+
+3. **Axios**: Makes HTTP requests simpler.
+   ```javascript
+   import axios from 'axios';
+   axios.get('https://api.example.com/data')
+     .then(response => console.log(response.data));
+   ```
+
+4. **Chart.js**: For creating charts and graphs.
+   ```javascript
+   import { Chart } from 'chart.js';
+   const ctx = document.getElementById('myChart').getContext('2d');
+   new Chart(ctx, {
+     type: 'bar',
+     data: {
+       labels: ['A', 'B', 'C'],
+       datasets: [{ label: 'Scores', data: [10, 20, 30] }]
+     }
+   });
+   ```
+
+---
+
+### **Benefits**
+- **Saves Time**: Pre-written solutions for complex problems.
+- **Community Support**: Active development and updates.
+- **Wide Range**: Libraries exist for nearly every need.
+
+---
+
+### **Cautions**
+- Avoid overusing libraries to reduce dependency bloat.
+- Check the library’s popularity, updates, and security before using.
+
+Would you like a specific library recommendation or guidance on integrating one into your project?
+
+****************************************************************************************************************************************
+
+### **Testing Frameworks**
+#### **Definition**
+A testing framework is a set of tools, libraries, and guidelines that assist developers in creating and 
+executing tests to ensure their code behaves as expected. These frameworks provide features like test runners, assertion libraries, and utilities to streamline the testing process.
+in simple worlds:Testing Framework external libray that help us write tests Easier
+---
+
+### **Types of Testing Frameworks**
+1. **Unit Testing Frameworks**:
+   - Focus on testing individual components or functions.
+   - Example: **Jest**, **JUnit**, **Mocha**.
+2. **Integration Testing Frameworks**:
+   - Test how different components or modules work together.
+   - Example: **Cypress**, **Karma**.
+3. **End-to-End (E2E) Testing Frameworks**:
+   - Test the entire application flow from the user’s perspective.
+   - Example: **Selenium**, **Playwright**, **Cypress**.
+4. **Behavior-Driven Development (BDD) Frameworks**:
+   - Emphasize readable, user-centric test cases written in natural language.
+   - Example: **Cucumber**, **Jasmine**.
+5. **Performance Testing Frameworks**:
+   - Measure how applications perform under various conditions.
+   - Example: **JMeter**, **Gatling**.
+
+---
+
+### **Popular Testing Frameworks by Language**
+#### **JavaScript**
+1. **Jest**:
+   - Developed by Facebook.
+   - Great for unit and snapshot testing.
+   - Built-in mocking and assertion library.
+   ```javascript
+   test('adds 1 + 2 to equal 3', () => {
+       expect(1 + 2).toBe(3);
+   });
+   ```
+2. **Mocha**:
+   - Flexible framework for browser and Node.js testing.
+   - Often paired with **Chai** for assertions.
+   ```javascript
+   const assert = require('chai').assert;
+   describe('Array', function () {
+       it('should start empty', function () {
+           let arr = [];
+           assert.equal(arr.length, 0);
+       });
+   });
+   ```
+3. **Cypress**:
+   - Primarily for E2E testing.
+   - Easy setup with real-time test execution.
+   ```javascript
+   describe('My First Test', () => {
+       it('Visits the Kitchen Sink', () => {
+           cy.visit('https://example.cypress.io');
+           cy.contains('type').click();
+       });
+   });
+   ```
+
+#### **Python**
+1. **Pytest**:
+   - Popular for unit testing.
+   - Simple syntax with extensive plugin support.
+   ```python
+   def test_addition():
+       assert 1 + 2 == 3
+   ```
+2. **UnitTest**:
+   - Python's built-in testing library.
+   ```python
+   import unittest
+   class TestMath(unittest.TestCase):
+       def test_add(self):
+           self.assertEqual(1 + 2, 3)
+   ```
+
+#### **Java**
+1. **JUnit**:
+   - The standard framework for unit testing in Java.
+   ```java
+   import org.junit.jupiter.api.Test;
+   import static org.junit.jupiter.api.Assertions.assertEquals;
+   public class CalculatorTest {
+       @Test
+       public void testAdd() {
+           assertEquals(3, 1 + 2);
+       }
+   }
+   ```
+2. **TestNG**:
+   - Advanced testing framework with parallel execution.
+   ```java
+   import org.testng.annotations.Test;
+   public class TestNGExample {
+       @Test
+       public void testMethod() {
+           System.out.println("TestNG is working fine");
+       }
+   }
+   ```
+
+#### **C++**
+1. **Google Test (GTest)**:
+   - Robust framework for unit testing.
+   ```cpp
+   #include <gtest/gtest.h>
+   TEST(AdditionTest, HandlesPositiveNumbers) {
+       EXPECT_EQ(1 + 2, 3);
+   }
+   ```
+
+---
+
+### **Why Use Testing Frameworks?**
+1. **Automation**: Save time by automating repetitive testing tasks.
+2. **Consistency**: Standardize the testing process.
+3. **Efficiency**: Easier identification of bugs and issues.
+4. **Readability**: Improved code readability and maintainability.
+
+---
+
+### **How to Choose a Testing Framework**
+- **Project Type**: E2E, unit, or integration testing?
+- **Language**: Choose one supported by your programming language.
+- **Ease of Use**: Look for a framework with good documentation.
+- **Community Support**: Opt for actively maintained frameworks.
+
+Would you like help setting up a specific testing framework or learning its features?
+
+******************************************************************************************************************************
+Testing Framework: external libray that help us write tests Easier
+1. create test suite
+2. create tests
+3. compare values and display result
+
+******Jasmine is a popular testing framework for JavaScript, primarily used for behavior-driven development (BDD). It allows you to write clean, readable, and easy-to-understand test cases. Jasmine is used for testing everything from simple functions to complex applications, particularly for unit testing and integration testing.
+Basic Structure of Jasmine Test
+A Jasmine test typically has three key parts:
+describe(): Groups tests into a test suite.
+it(): Defines individual test cases.
+expect(): Makes assertions about the expected outcome.
+Common Jasmine Matchers
+toBe(): Checks for strict equality (similar to ===).
+javascript
+Kodu kopyala
+expect(5).toBe(5);
+toEqual(): Checks for equality in value, not strict equality.
+javascript
+Kodu kopyala
+expect([1, 2, 3]).toEqual([1, 2, 3]);
+toContain(): Checks if an array or string contains a specific value.
+javascript
+Kodu kopyala
+expect([1, 2, 3]).toContain(2);
+toThrow(): Checks if a function throws an error.
+javascript
+Kodu kopyala
+expect(() => { throw new Error('Oops!') }).toThrow();
