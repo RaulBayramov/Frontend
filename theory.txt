@@ -315,3 +315,184 @@ toThrow(): Checks if a function throws an error.
 javascript
 Kodu kopyala
 expect(() => { throw new Error('Oops!') }).toThrow();
+
+*******************************************************************************************************************************
+### Mock Nedir?  
+
+**Mock**, yazılım testlerinde kullanılan bir tekniktir ve gerçek nesnelerin davranışlarını taklit eden sahte nesneler oluşturmayı ifade eder. Mock'lar, bir fonksiyonu ya da birim kodunu test ederken, onun bağımlı olduğu diğer parçaları simüle etmek için kullanılır. Böylece, testler yalnızca test edilmek istenen kodun doğruluğunu kontrol eder ve dış bağımlılıklara gerek kalmaz.  
+
+---
+
+### Mock Kullanmanın Avantajları  
+1. **İzolasyon**: Test edilen kod parçasını, diğer modüllerden veya dış sistemlerden bağımsız hale getirir.  
+2. **Kontrol**: Bağımlı nesnelerin nasıl davranacağını belirleyebilirsiniz (örneğin, hata fırlatması ya da sabit bir değer döndürmesi).  
+3. **Performans**: Gerçek veritabanı, dosya sistemi veya ağ çağrıları gibi işlemlerin yavaşlığından kurtulursunuz.  
+4. **Güvenilirlik**: Dış sistemlere bağımlılığı kaldırarak, testlerinizin her zaman tutarlı bir şekilde çalışmasını sağlarsınız.  
+
+---
+
+### Mock ile İlgili Terimler  
+1. **Mock Nesnesi**: Gerçek bir nesnenin davranışını taklit eden sahte bir nesne.  
+2. **Stub**: Belirli girişlere sabit bir çıktı dönen basitleştirilmiş bir bağımlılık.  
+3. **Spy**: Gerçek bir nesne üzerinde çalışır ama onun etkileşimlerini (örneğin, hangi metodun çağrıldığı) gözlemler.  
+4. **Fake**: Gerçek bağımlılığa benzer davranışlar sunan ancak daha basit bir uygulama.  
+5. **Dummy**: Sadece bir bağımlılığı yerine getirmek için kullanılan, gerçek bir işlevi olmayan nesneler.  
+
+---
+
+### Örnek: JavaScript ile Mock Kullanımı  
+
+#### Jest ile Mock Fonksiyonu Örneği  
+Aşağıdaki örnekte bir callback fonksiyonunu test etmek için bir mock fonksiyonu kullanıyoruz:  
+
+```javascript
+// Test edilecek fonksiyon
+function fetchData(callback) {
+  setTimeout(() => {
+    callback("Veri alındı");
+  }, 1000);
+}
+
+// Jest ile test
+test("fetchData doğru veriyi döndürmeli", () => {
+  const mockCallback = jest.fn(); // Mock fonksiyonu oluştur
+
+  fetchData(mockCallback);
+
+  // Zamanı ileri al
+  jest.runAllTimers();
+
+  // Mock fonksiyonun doğru veriyle çağrıldığını kontrol et
+  expect(mockCallback).toHaveBeenCalledWith("Veri alındı");
+});
+---
+
+### Mock Ne Zaman Kullanılır?  
+1. **Birim Testi (Unit Test)**: Kodun küçük bir parçasını bağımlılıklardan izole ederek test etmek için.  
+2. **Entegrasyon Testi (Integration Test)**: Henüz tamamlanmamış modülleri simüle etmek için.  
+3. **API Testi**: Dış API'leri taklit ederek sabit cevaplar döndürmek için.  
+
+---
+
+### Mock Kullanımında En İyi Uygulamalar  
+1. **Sadece Gerekli Olanı Mock Edin**: Aşırı derecede mocking yapmaktan kaçının, bu testlerin kırılgan hale gelmesine neden olabilir.  
+2. **Gerçek Etkileşimleri de Test Edin**: Modüllerin birbiriyle nasıl çalıştığını görmek için entegrasyon testlerini kullanın.  
+3. **Mock Kullanımını Doğru Belgeleyin**: Testlerinizi anlamak kolay olmalı.  
+4. **Davranışı Doğrulayın**: Mock'lar üzerinden metotların doğru çağrıldığını ve doğru parametrelerin kullanıldığını kontrol edin.  
+
+*******************************************************************************************************************************
+
+`spyOn` fonksiyonu, Jasmine test framework'ünde bir nesnenin yöntemini (metodunu) **izlemek, değiştirmek veya kontrol etmek** için kullanılır. Bir metot üzerinde casusluk (spy) yaparak, o yöntemin çağrılıp çağrılmadığını, hangi argümanlarla çağrıldığını ve kaç kez çağrıldığını kolayca kontrol edebilirsiniz.
+
+---
+
+### `spyOn` Nasıl Çalışır?
+
+1. **Bir Nesnenin Yöntemini İzleme (Spy)**:
+   - `spyOn` bir nesnenin belirli bir yöntemine (metoduna) casusluk yapar.
+   - Orijinal metot, isteğe bağlı olarak çalışabilir veya değiştirilebilir.
+
+2. **Davranışı Kontrol Etme**:
+   - Yöntemin çağrılma sayısını, argümanlarını ve çağrılma sırasını kontrol etmek için kullanılır.
+   - Yöntemin gerçek uygulamasını çalıştırmadan taklit edilen bir davranış tanımlayabilirsiniz.
+
+---
+
+### Kullanım Örneği
+
+#### Basit Bir `spyOn` Örneği
+
+```javascript
+describe("Jasmine spyOn örneği", () => {
+  const calculator = {
+    add: (a, b) => a + b,
+  };
+
+  it("add metodunun çağrıldığını doğrular", () => {
+    // add metoduna casusluk yap
+    spyOn(calculator, "add");
+
+    // Metodu çağır
+    calculator.add(2, 3);
+
+    // Metodun çağrıldığını doğrula
+    expect(calculator.add).toHaveBeenCalled();
+  });
+
+  it("add metodunun doğru argümanlarla çağrıldığını doğrular", () => {
+    spyOn(calculator, "add");
+
+    calculator.add(5, 7);
+
+    // Metodun doğru argümanlarla çağrıldığını kontrol et
+    expect(calculator.add).toHaveBeenCalledWith(5, 7);
+  });
+});
+```
+
+---
+
+#### Gerçek Metodu Çalıştırmadan Taklit Etme (Mock)
+
+`spyOn` ile gerçek metodu çalıştırmayı engelleyebilir ve sahte bir değer döndürebilirsiniz:
+
+```javascript
+describe("Mock ile spyOn kullanımı", () => {
+  const calculator = {
+    multiply: (a, b) => a * b,
+  };
+
+  it("multiply metodu sahte bir değer döndürür", () => {
+    // Metodu sahte bir davranışla taklit et
+    spyOn(calculator, "multiply").and.returnValue(100);
+
+    const result = calculator.multiply(4, 5);
+
+    // Dönen değeri doğrula
+    expect(result).toBe(100);
+
+    // Metodun çağrıldığını kontrol et
+    expect(calculator.multiply).toHaveBeenCalledWith(4, 5);
+  });
+});
+```
+
+---
+
+### `spyOn` ile Ek Fonksiyonlar
+
+1. **`and.callThrough()`**: Gerçek metodu çalıştırmaya devam eder.
+   ```javascript
+   spyOn(calculator, "add").and.callThrough();
+   ```
+
+2. **`and.returnValue(value)`**: Metodun her çağrıldığında belirli bir değeri döndürmesini sağlar.
+   ```javascript
+   spyOn(calculator, "add").and.returnValue(42);
+   ```
+
+3. **`and.callFake(fakeFunction)`**: Metodun çalışmasını tamamen taklit eden bir fonksiyon tanımlar.
+   ```javascript
+   spyOn(calculator, "add").and.callFake((a, b) => a - b);
+   ```
+
+4. **`and.throwError(error)`**: Metodun çağrıldığında hata fırlatmasını sağlar.
+   ```javascript
+   spyOn(calculator, "add").and.throwError("Hata oluştu!");
+   ```
+
+---
+
+### Özet
+
+`spyOn`, Jasmine'de test edilen kodun bağımlılıklarını izole etmek, izlemek ve davranışlarını taklit etmek için güçlü bir araçtır.  
+
+#### Öne Çıkan Kullanım Alanları:
+- Bir metodun kaç kez çağrıldığını kontrol etmek.
+- Bir metodun hangi argümanlarla çağrıldığını doğrulamak.
+- Gerçek metodu çalıştırmadan belirli bir sonuç döndürmek (mocking).
+
+Başka bir örneğe veya detaylı bir açıklamaya ihtiyacınız var mı? 😊
+
+*******************************************************************************************************************************
+

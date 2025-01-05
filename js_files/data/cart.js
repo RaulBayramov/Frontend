@@ -1,12 +1,21 @@
 
-export let cart = JSON.parse(localStorage.getItem('cart'));
-if (!cart) {
-    cart = [
-        { courseId: "1234567890" }
-    ]
+export let cart;
+loadFromStorage();
+export function loadFromStorage() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) {
+        cart = [
+            { courseId: "1234567893" }
+        ]
+    }
 }
-function addedMesageFunc(courseId) {
-    const addedMesage = document.querySelector(`.js-added-to-card-${courseId}`);
+export function addedMesageFunc(courseId) {
+
+    const addedMesage = document.querySelector(`.js-added-to-cart-${courseId}`);
+    if (!addedMesage) {
+        console.warn(`Element .js-added-to-cart-${courseId} not found`);
+        return; // Devam etme
+    }
     addedMesage.style.opacity = 1;
     setTimeout(() => {
         addedMesage.style.opacity = 0;
@@ -14,10 +23,12 @@ function addedMesageFunc(courseId) {
 }
 export function addToCart(courseId) {
     let matchItem;
-    addedMesageFunc(courseId);
+    addedMesageFunc(courseId); // courseId'yi burada doğru şekilde geçirdiğinizden emin olun.
+
+
     cart.forEach((cartItem) => {
         if (cartItem.courseId === courseId) {
-            matchItem = cartItem
+            matchItem = cartItem;
         }
     })
     if (!matchItem) {

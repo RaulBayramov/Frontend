@@ -224,3 +224,7 @@ footer ul li a {
     color: white;
     text-decoration: none;
 }
+
+.added-to-cart-visible {
+    opacity: 1;
+}

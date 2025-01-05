@@ -1,4 +1,4 @@
-import { videoLengthFormat } from "../js_files/utils/videoTime.js";
+import { videoLengthFormat } from "../../js_files/utils/videoTime.js";
 
 describe("test suite: VideoLengthFormat->converts seconds to the hour:minute:second format", () => {
     it("0 second === 00:00:00", () => {

@@ -33,7 +33,7 @@ ourPopulars.forEach((course) => {
                         ${course.videoInfo.viewCount} views &#183; ${course.timeAgo()}
                     </p>
                     <div class="action-buttons">
-                        <div class="added-to-cart js-added-to-card-${course.id}">
+                        <div class="added-to-cart js-added-to-cart-${course.id}">
                             <img src="./images_/icons/checkmark.png">
                             Added
                         </div>
