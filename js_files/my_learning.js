@@ -5,7 +5,7 @@ import { courses } from "./data/data.js";
 header();
 function renderCart() {
     let cartSummary = '';
-    document.querySelector("h3").innerHTML = `${cart.length} proucts in cart`;
+    document.querySelector("h3").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
     cart.forEach((cartItem) => {
         let matchCourse = courses.find((course) => cartItem.courseId === course.id);
         cartSummary += `
@@ -25,9 +25,11 @@ function renderCart() {
                     <p class="video-author">
                         <a href="${matchCourse.instructor.aboutInstructor}" target="_blank" rel="noopener noreferrer">
                             ${matchCourse.instructor.name}
-
                         </a>
                     </p>
+                     <div class="rating">
+                        <img src="../ratings/rating-${matchCourse.rating}.png" class="rating_img">
+                    </div>
                     <p class="video-stats">
                         ${matchCourse.videoInfo.viewCount} views &#183; ${matchCourse.timeAgo()}
                     </p>
@@ -40,7 +42,7 @@ function renderCart() {
     `;
 
     })
-    document.querySelector(".container").innerHTML = cartSummary;
+    document.querySelector(".js-video-grid-courses").innerHTML = cartSummary;
     document.querySelectorAll(".js-delete-link").forEach((link) => {
         let courseId = link.dataset.courseId;
 

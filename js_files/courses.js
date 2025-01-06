@@ -18,17 +18,19 @@ courses.forEach((course) => {
                     <p class="video-title">
                         ${course.name}
                     </p>
-                    ${course.courseInfo()}
                     <p class="video-author">
                         <a href="${course.instructor.aboutInstructor}" target="_blank" rel="noopener noreferrer">
                             ${course.instructor.name}
                         </a>
                     </p>
+                    <div class="rating">
+                        <img src="../ratings/rating-${course.rating}.png" class="rating_img">
+                    </div>
                     <p class="video-stats">
                         ${course.videoInfo.viewCount} views &#183; ${course.timeAgo()}
                     </p>
                     <div class="action-buttons">
-                        <div class="added-to-cart js-added-to-card-${course.id}">
+                        <div class="added-to-cart js-added-to-cart-${course.id}">
                             <img src="./images_/icons/checkmark.png">
                             Added
                         </div>
@@ -58,6 +60,7 @@ videoPrew.forEach(element => {
 document.querySelectorAll(".js-add-button").forEach((button) => {
     button.addEventListener("click", () => {
         const courseId = button.dataset.id;
+        console.log("clicked");
         addToCart(courseId);
         document.querySelector(".cart-quantity").innerHTML = cart.length
     })

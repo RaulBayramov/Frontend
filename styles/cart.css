@@ -36,6 +36,7 @@ h3 {
     margin: 0;
 }
 
+/* 
 .video-preview {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -108,10 +109,18 @@ h3 {
     font-size: 0.8em;
     color: #999;
     padding-bottom: 0.8rem;
-}
+} */
 
 .delete-quantity-link {
     color: orange;
     cursor: pointer;
     padding: 0.5rem;
+}
+
+@media (min-width: 675px) {
+    .video-grid {
+        display: grid;
+        max-height: fit-content;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    }
 }

@@ -10,12 +10,7 @@ export function loadFromStorage() {
     }
 }
 export function addedMesageFunc(courseId) {
-
     const addedMesage = document.querySelector(`.js-added-to-cart-${courseId}`);
-    if (!addedMesage) {
-        console.warn(`Element .js-added-to-cart-${courseId} not found`);
-        return; // Devam etme
-    }
     addedMesage.style.opacity = 1;
     setTimeout(() => {
         addedMesage.style.opacity = 0;

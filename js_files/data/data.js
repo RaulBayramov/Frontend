@@ -14,6 +14,7 @@ class Course {
         this.instructor = course.instructor;
         this.videoSrc = course.videoSrc;
         this.thumbnail = course.thumbnail;
+        this.rating = course.rating;
         this.videoInfo = course.videoInfo;
         this.type = course.type;
     }
@@ -90,6 +91,7 @@ export let courses = [
         },
         videoSrc: './videos/1%20ლექცია%20-%20მოდელირება%20და%20სიმულაცია.mp4',
         thumbnail: './images_/thumbnails/operating-system-t.jpg',
+        rating: 45,
         videoInfo: {
             viewCount: 8000,
             uploadDate: "2025-01-04T20:28:00",
@@ -108,6 +110,7 @@ export let courses = [
         },
         videoSrc: './videos/Discrete-Mathematics-Tutorial.mp4',
         thumbnail: './images_/thumbnails/Discrete-Mathematics-Tutorial.jpg',
+        rating: 45,
         videoInfo: {
             viewCount: 8500,
             uploadDate: "2024-01-31T10:00:00",
@@ -126,6 +129,7 @@ export let courses = [
         },
         videoSrc: './videos/Linear-Algebra.mp4',
         thumbnail: './images_/thumbnails/Linear-Algebra-in-Machine-Learning.png',
+        rating: 40,
         videoInfo: {
             viewCount: 9400,
             uploadDate: "2024-10-31T11:00:00",
@@ -144,6 +148,7 @@ export let courses = [
         },
         videoSrc: './videos/Haskell-Programming.mp4',
         thumbnail: './images_/thumbnails/haskell.jpg',
+        rating: 40,
         videoInfo: {
             viewCount: 7800,
             uploadDate: "2024-07-31T10:30:00",
@@ -162,6 +167,7 @@ export let courses = [
         },
         videoSrc: './videos/Statistics-Basics.mp4',
         thumbnail: './images_/thumbnails/statistics.jpg',
+        rating: 50,
         videoInfo: {
             viewCount: 10200,
             uploadDate: "2024-02-21T15:00:00",
@@ -180,6 +186,7 @@ export let courses = [
         },
         videoSrc: './videos/Statistics-Basics.mp4',
         thumbnail: './images_/thumbnails/stressMenegment.webp',
+        rating: 35,
         videoInfo: {
             viewCount: 456,
             uploadDate: "2024-02-01T10:00:00",
@@ -197,6 +204,7 @@ export let courses = [
         },
         videoSrc: './videos/Statistics-Basics.mp4',
         thumbnail: './images_/thumbnails/c++.png',
+        rating: 50,
         videoInfo: {
             viewCount: 1200,
             uploadDate: "2024-04-01T15:01:00",
@@ -215,6 +223,7 @@ export let courses = [
         },
         videoSrc: './videos/Statistics-Basics.mp4',
         thumbnail: './images_/thumbnails/Office365-all-icons-750x500.png',
+        rating: 45,
         videoInfo: {
             viewCount: 9290,
             uploadDate: "2024-10-11T10:00:00",

@@ -1,45 +1,15 @@
-.video-section {
-    padding: 20px;
-}
-
-.our_populars {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.section-title {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #333;
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-    margin: 0;
-    position: relative;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     margin-bottom: 30px;
+    padding: 5px 20px 5px;
 }
 
 .video-preview {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -56,6 +26,7 @@
 
 .thumbnail {
     width: 100%;
+    height: 45%;
     object-fit: cover;
 }
 
@@ -73,6 +44,10 @@
 .video-info-grid {
     display: flex;
     padding: 10px;
+    height: 50%;
+    align-items: start;
+    position: relative;
+    /* Üst eleman konumlandırılmış */
 }
 
 .channel-picture {
@@ -89,24 +64,50 @@
 
 .video-info {
     flex-grow: 1;
+    height: 100%;
+    width: 100%;
 }
 
 .video-title {
-    font-size: 1em;
-    font-weight: bold;
+    font-size: 16px;
+    font-family: Roboto, Arial;
+    font-weight: 700;
     margin: 0;
     color: #333;
+    padding-bottom: 0.2rem;
 }
 
-.video-author {
+.video-author a {
     font-size: 0.9em;
     color: #666;
     margin: 5px 0;
 }
 
 .video-stats {
-    font-size: 0.8em;
+    font-size: 0.85em;
     color: #999;
+}
+
+.video-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alt tarafa hizala */
+    height: 100%;
+    /* Tüm alanı kapla */
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.rating_img {
+    height: 1rem;
+    object-fit: contain;
 }
 
 .added-to-cart {
@@ -134,4 +135,16 @@
     border-radius: 5px;
     background-color: orange;
     border: none;
+}
+
+@media (max-width: 675px) {
+    .video-preview {
+        max-width: 400px;
+    }
+
+    .video-grid {
+        display: grid;
+        max-height: fit-content;
+        max-width: 400px;
+    }
 }
