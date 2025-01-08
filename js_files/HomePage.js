@@ -1,7 +1,7 @@
 import { courses } from './data/data.js'
 import * as aliasName from './shares/header.js';
 import { cart as cartDatabase, addToCart } from "./data/cart.js";
-
+import { formatCurrency } from './utils/formatCurrency.js';
 // Generate Html with javascript
 aliasName.header();
 let temp = [];
@@ -29,6 +29,9 @@ ourPopulars.forEach((course) => {
                             ${course.instructor.name}
                         </a>
                     </p>
+                    <div class="rating">
+                        <img src="../ratings/rating-${course.rating}.png" class="rating_img">
+                    </div>
                     <p class="video-stats">
                         ${course.videoInfo.viewCount} views &#183; ${course.timeAgo()}
                     </p>
@@ -38,9 +41,12 @@ ourPopulars.forEach((course) => {
                             Added
                         </div>
 
-                        <button class="add-to-cart-button button-primary js-add-button" data-id="${course.id}">
-                            Add to Cart
-                        </button>
+                        <div class = "add-price-container">
+                            <button class="add-to-cart-button button-primary js-add-button" data-id="${course.id}">
+                                 Add to Cart
+                            </button>
+                            <p>${formatCurrency(course.price)}</p>
+                        </div>
                     </div>
                 </div>
             </div>

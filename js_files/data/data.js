@@ -16,6 +16,7 @@ class Course {
         this.thumbnail = course.thumbnail;
         this.rating = course.rating;
         this.videoInfo = course.videoInfo;
+        this.price = course.price;
         this.type = course.type;
     }
     getVideoLength() {
@@ -97,6 +98,7 @@ export let courses = [
             uploadDate: "2025-01-04T20:28:00",
             videoLength: 43205
         },
+        price: 0,
         type: 'Programing',
         programingLanguage: 'Pyton'
     },
@@ -116,6 +118,7 @@ export let courses = [
             uploadDate: "2024-01-31T10:00:00",
             videoLength: 36000
         },
+        price: 1000,
         type: 'Mathematics',
         field: 'Discrete structures'
     },
@@ -135,6 +138,7 @@ export let courses = [
             uploadDate: "2024-10-31T11:00:00",
             videoLength: 42000
         },
+        price: 3000,
         type: 'Mathematics',
         field: 'Linear Algebra'
     },
@@ -154,6 +158,7 @@ export let courses = [
             uploadDate: "2024-07-31T10:30:00",
             videoLength: 48000
         },
+        price: 1000,
         type: 'Programing',
         programingLanguage: 'Haskell'
     },
@@ -173,6 +178,7 @@ export let courses = [
             uploadDate: "2024-02-21T15:00:00",
             videoLength: 54000
         },
+        price: 10000,
         type: 'Mathematics',
         field: 'Data Analysis and Statistics'
     },
@@ -192,6 +198,7 @@ export let courses = [
             uploadDate: "2024-02-01T10:00:00",
             videoLength: 11000
         },
+        price: 0,
         type: 'Psychology'
     },
     {
@@ -210,6 +217,7 @@ export let courses = [
             uploadDate: "2024-04-01T15:01:00",
             videoLength: 44000
         },
+        price: 3000,
         type: 'Programing',
         programingLanguage: 'C++'
     },
@@ -229,6 +237,7 @@ export let courses = [
             uploadDate: "2024-10-11T10:00:00",
             videoLength: 24000
         },
+        price: 3000,
         type: 'Programing',
         programingLanguage: 'Microsoft Office 365'
     }

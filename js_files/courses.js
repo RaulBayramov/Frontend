@@ -1,6 +1,7 @@
 import { courses } from "./data/data.js";
 import { header } from "./shares/header.js";
 import { addToCart, cart } from "./data/cart.js";
+import { formatCurrency } from "./utils/formatCurrency.js";
 let courseHTML = '';
 header();
 courses.forEach((course) => {
@@ -34,10 +35,12 @@ courses.forEach((course) => {
                             <img src="./images_/icons/checkmark.png">
                             Added
                         </div>
-
-                        <button class="add-to-cart-button button-primary js-add-button" data-id="${course.id}">
-                            Add to Cart
-                        </button>
+                        <div class = "add-price-container">
+                            <button class="add-to-cart-button button-primary js-add-button" data-id="${course.id}">
+                                Add to Cart
+                            </button>
+                            <p>${formatCurrency(course.price)}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,4 +68,18 @@ document.querySelectorAll(".js-add-button").forEach((button) => {
         document.querySelector(".cart-quantity").innerHTML = cart.length
     })
 })
+
+function resize() {
+    const row = document.querySelector(".video-grid");
+    if (window.innerWidth <= 675) {
+        const rowWidth = parseFloat(window.getComputedStyle(row).width); // "px" biriminden arındırıldı
+        const marginLeftValue = (window.innerWidth - rowWidth) / 2;
+        row.style.marginLeft = `${marginLeftValue}px`;
+    }
+    else {
+        row.style.marginLeft = '0px';
+    }
+}
+window.addEventListener('resize', resize)
+window.addEventListener('load', resize)
 

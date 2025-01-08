@@ -1,15 +1,17 @@
-import { header } from "./shares/header.js";
+
 import { cart, removeFromCart } from "./data/cart.js";
 import { courses } from "./data/data.js";
 
-header();
-function renderCart() {
+
+export function renderCart() {
     let cartSummary = '';
-    document.querySelector("h3").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
+    if (document.querySelector("h3") !== null) {
+        document.querySelector("h3").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
+    }
     cart.forEach((cartItem) => {
         let matchCourse = courses.find((course) => cartItem.courseId === course.id);
         cartSummary += `
-        <div class="video-preview js-video-preview-${matchCourse.id}">
+        <div class="video-preview js-video-preview js-video-preview-${matchCourse.id} data-id="${matchCourse.id || ''}">
             <div class="thumbnail-row">
                 <img class="thumbnail" src="${matchCourse.thumbnail}" alt="C++ Course Thumbnail">
                 <div class="video-time">${matchCourse.getVideoLength()} hours</div>
@@ -27,14 +29,14 @@ function renderCart() {
                             ${matchCourse.instructor.name}
                         </a>
                     </p>
-                     <div class="rating">
+                    <div class="rating">
                         <img src="../ratings/rating-${matchCourse.rating}.png" class="rating_img">
                     </div>
                     <p class="video-stats">
                         ${matchCourse.videoInfo.viewCount} views &#183; ${matchCourse.timeAgo()}
                     </p>
-                    <span class="delete-quantity-link link-primary js-delete-link" data-course-id="${matchCourse.id}">
-                        Delete
+                    <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchCourse.id}" data-id="${matchCourse.id || ''}">
+                         Delete
                     </span>
                 </div>
             </div>
@@ -42,21 +44,25 @@ function renderCart() {
     `;
 
     })
+    // console.log(cartSummary)
     document.querySelector(".js-video-grid-courses").innerHTML = cartSummary;
-    document.querySelectorAll(".js-delete-link").forEach((link) => {
-        let courseId = link.dataset.courseId;
-
+    // console.log(document.querySelector(".js-video-grid-courses").innerHTML)
+    document.querySelectorAll(".delete-quantity-link").forEach((link) => {
+        let courseId = link.dataset.id;
         link.addEventListener('click', () => {
             removeFromCart(courseId);
-            console.log(courseId)
+            // console.log(cart)
             const container = document.querySelector(`.js-video-preview-${courseId}`);
             container.remove();
             renderCart();
-            document.querySelector(".cart-quantity").innerHTML = cart.length;
+            if (document.querySelector(".cart-quantity")) {
+                document.querySelector(".cart-quantity").innerHTML = cart.length;
+            }
         })
 
     })
-    let videoPrew = document.querySelectorAll(".thumbnail-row");
+
+    let videoPrew = document.querySelectorAll(".thumbnail");
     videoPrew.forEach(element => {
         element.addEventListener("click", function () {
             window.location.href = "video_playlist.html"
@@ -64,3 +70,5 @@ function renderCart() {
     });
 }
 renderCart();
+
+

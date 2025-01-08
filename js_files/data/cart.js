@@ -5,12 +5,16 @@ export function loadFromStorage() {
     cart = JSON.parse(localStorage.getItem('cart'));
     if (!cart) {
         cart = [
-            { courseId: "1234567893" }
+            { courseId: "1234567890" }
         ]
     }
 }
 export function addedMesageFunc(courseId) {
     const addedMesage = document.querySelector(`.js-added-to-cart-${courseId}`);
+    if (!addedMesage) {
+        console.log('addedmesage === nul');
+        return;
+    }
     addedMesage.style.opacity = 1;
     setTimeout(() => {
         addedMesage.style.opacity = 0;
@@ -18,9 +22,6 @@ export function addedMesageFunc(courseId) {
 }
 export function addToCart(courseId) {
     let matchItem;
-    addedMesageFunc(courseId); // courseId'yi burada doğru şekilde geçirdiğinizden emin olun.
-
-
     cart.forEach((cartItem) => {
         if (cartItem.courseId === courseId) {
             matchItem = cartItem;
@@ -33,6 +34,7 @@ export function addToCart(courseId) {
     }
     console.log(cart);
     saveToStorage();
+    addedMesageFunc(courseId); // courseId'yi burada doğru şekilde geçirdiğinizden emin olun.
 }
 export function removeFromCart(courseId) {
     const newCart = [];

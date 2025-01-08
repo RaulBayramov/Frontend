@@ -8,7 +8,7 @@ body {
 
 header {
     box-shadow: 0 5px 10px rgba(150, 150, 150, 0.5);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
     margin-bottom: 0.1rem;
 }
 
@@ -74,7 +74,7 @@ h3 {
 .video-info-grid {
     display: flex;
     padding: 10px;
-}
+} 
 
 .channel-picture {
     margin-right: 10px;
