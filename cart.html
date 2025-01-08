@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/main_page_style.css">
-    <link rel="stylesheet" href="styles/shares/course.css">
+    <!-- <link rel="stylesheet" href="styles/shares/course.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,14 +16,27 @@
 <body>
     <special-header></special-header>
     <div class="my-learnings">
-        <h1>My Learning</h1>
+        <h1>Shopping Cart</h1>
     </div>
-    <h3>0 courses in cart</h3>
-    <section class="video-grid js-video-grid-courses"></section>
+
+    <main class="cart">
+        <div class="cart-courses js-video-grid-courses">
+
+        </div>
+        <div class="paymant-summary js-paymant-summary">
+            <h3 class="total">Total</h3>
+            <div class="paymants">
+                <p class="net-price">0</p>
+                <p class="price">0</p>
+                <p class="off">0%</p>
+            </div>
+            <button class="checkout-button" role="button">Checkout</button>
+        </div>
+    </main>
     <special-footer></special-footer>
     <script type="module" src="js_files/shares/headerFooterManager.js"></script>
-    <script type="module" src="js_files/my_learning.js"></script>
     <script type="module" src="js_files/shares/header.js"></script>
+    <script type="module" src="js_files/my_learning.js"></script>
 </body>
 
 </html>

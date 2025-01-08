@@ -1,26 +1,20 @@
 
 import { cart, removeFromCart } from "./data/cart.js";
 import { courses } from "./data/data.js";
+import { formatCurrency } from "./utils/formatCurrency.js";
 
 
 export function renderCart() {
     let cartSummary = '';
-    if (document.querySelector("h3") !== null) {
-        document.querySelector("h3").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
-    }
     cart.forEach((cartItem) => {
         let matchCourse = courses.find((course) => cartItem.courseId === course.id);
         cartSummary += `
         <div class="video-preview js-video-preview js-video-preview-${matchCourse.id} data-id="${matchCourse.id || ''}">
             <div class="thumbnail-row">
                 <img class="thumbnail" src="${matchCourse.thumbnail}" alt="C++ Course Thumbnail">
-                <div class="video-time">${matchCourse.getVideoLength()} hours</div>
             </div>
             <div class="video-info-grid">
-                <div class="channel-picture">
-                    <img class="profile-picture" src="${matchCourse.instructor.img}" alt="Not Found">
-                </div>
-                <div class="video-info">
+                <div class="video-info js-video-info-${matchCourse.id}">
                     <p class="video-title">
                         ${matchCourse.name}
                     </p>
@@ -35,17 +29,23 @@ export function renderCart() {
                     <p class="video-stats">
                         ${matchCourse.videoInfo.viewCount} views &#183; ${matchCourse.timeAgo()}
                     </p>
-                    <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchCourse.id}" data-id="${matchCourse.id || ''}">
-                         Delete
-                    </span>
                 </div>
+            </div>
+            <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchCourse.id}" data-id="${matchCourse.id || ''}">
+                Delete
+            </span>
+            <div class="js-price-${matchCourse.id}">
+                <p>${formatCurrency(matchCourse.price)}</p>
             </div>
         </div>
     `;
 
     })
-    // console.log(cartSummary)
-    document.querySelector(".js-video-grid-courses").innerHTML = cartSummary;
+    const content = `<h3 class="course-quantity js-course-quantity">Hello</h3>`;
+    document.querySelector(".js-video-grid-courses").innerHTML = content + cartSummary;
+    if (document.querySelector(".js-course-quantity") !== null) {
+        document.querySelector(".js-course-quantity").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
+    }
     // console.log(document.querySelector(".js-video-grid-courses").innerHTML)
     document.querySelectorAll(".delete-quantity-link").forEach((link) => {
         let courseId = link.dataset.id;
@@ -68,6 +68,24 @@ export function renderCart() {
             window.location.href = "video_playlist.html"
         })
     });
+    function changeOrder() {
+        cart.forEach((forEveryItem) => {
+            const element = document.querySelector(`.js-delete-link-${forEveryItem.courseId}`);
+            const videoInfoGrid = document.querySelector(`.js-video-info-${forEveryItem.courseId}`);
+            if (window.innerWidth <= 675) {
+                videoInfoGrid.appendChild(element);
+            }
+            else {
+                const videoPrew = document.querySelector(`.js-video-preview-${forEveryItem.courseId}`);
+                const price = document.querySelector(`.js-price-${forEveryItem.courseId}`)
+                videoPrew.appendChild(element);
+                videoPrew.insertBefore(element, price)
+
+            }
+        })
+    }
+    window.addEventListener('load', changeOrder);
+    window.addEventListener('resize', changeOrder);
 }
 renderCart();
 
