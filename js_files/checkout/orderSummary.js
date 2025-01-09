@@ -1,10 +1,11 @@
 
-import { cart, removeFromCart } from "./data/cart.js";
-import { courses } from "./data/data.js";
-import { formatCurrency } from "./utils/formatCurrency.js";
-
+import { cart, removeFromCart } from "../data/cart.js";
+import { courses } from "../data/data.js";
+import { formatCurrency } from "../utils/formatCurrency.js";
+import { renderPaymantSummary } from "./paymantSummary.js";
 
 export function renderCart() {
+    //generate HTML
     let cartSummary = '';
     cart.forEach((cartItem) => {
         let matchCourse = courses.find((course) => cartItem.courseId === course.id);
@@ -34,7 +35,7 @@ export function renderCart() {
             <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchCourse.id}" data-id="${matchCourse.id || ''}">
                 Delete
             </span>
-            <div class="js-price-${matchCourse.id}">
+            <div class="course-price js-price-${matchCourse.id} js-price">
                 <p>${formatCurrency(matchCourse.price)}</p>
             </div>
         </div>
@@ -46,28 +47,7 @@ export function renderCart() {
     if (document.querySelector(".js-course-quantity") !== null) {
         document.querySelector(".js-course-quantity").innerHTML = `${cart.length} ${cart.length === 1 ? 'course' : 'courses'} in cart`;
     }
-    // console.log(document.querySelector(".js-video-grid-courses").innerHTML)
-    document.querySelectorAll(".delete-quantity-link").forEach((link) => {
-        let courseId = link.dataset.id;
-        link.addEventListener('click', () => {
-            removeFromCart(courseId);
-            // console.log(cart)
-            const container = document.querySelector(`.js-video-preview-${courseId}`);
-            container.remove();
-            renderCart();
-            if (document.querySelector(".cart-quantity")) {
-                document.querySelector(".cart-quantity").innerHTML = cart.length;
-            }
-        })
-
-    })
-
-    let videoPrew = document.querySelectorAll(".thumbnail");
-    videoPrew.forEach(element => {
-        element.addEventListener("click", function () {
-            window.location.href = "video_playlist.html"
-        })
-    });
+    //responsive design
     function changeOrder() {
         cart.forEach((forEveryItem) => {
             const element = document.querySelector(`.js-delete-link-${forEveryItem.courseId}`);
@@ -86,7 +66,34 @@ export function renderCart() {
     }
     window.addEventListener('load', changeOrder);
     window.addEventListener('resize', changeOrder);
+    // console.log(document.querySelector(".js-video-grid-courses").innerHTML)
+
+    //delete element
+    document.querySelectorAll(".delete-quantity-link").forEach((link) => {
+        let courseId = link.dataset.id;
+        link.addEventListener('click', () => {
+            removeFromCart(courseId);
+            // console.log(cart)
+            const container = document.querySelector(`.js-video-preview-${courseId}`);
+            container.remove();
+            renderCart();
+            if (document.querySelector(".cart-quantity")) {
+                document.querySelector(".cart-quantity").innerHTML = cart.length;
+            }
+            changeOrder();
+            renderPaymantSummary();
+        })
+
+    })
+
+    let videoPrew = document.querySelectorAll(".thumbnail");
+    videoPrew.forEach(element => {
+        element.addEventListener("click", function () {
+            window.location.href = "video_playlist.html"
+        })
+    });
 }
-renderCart();
+
+
 
 
