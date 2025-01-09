@@ -1,5 +1,5 @@
-import { renderCart } from '../js_files/checkout/orderSummary.js'
-import { cart, loadFromStorage } from '../js_files/data/cart.js';
+import { renderCart } from '../../js_files/checkout/orderSummary.js'
+import { cart, loadFromStorage } from '../../js_files/data/cart.js';
 describe('test suite: renderCart', () => {
     beforeEach(() => {
         document.querySelector('.js-test-container').innerHTML = `
