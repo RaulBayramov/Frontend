@@ -1,0 +1,21 @@
+@use "sass:math";
+
+@function percent($element-size, $container-size) {
+  $element-size: $element-size * 100%;
+  $result: calc($element-size/$container-size);
+  @return $result;
+}
+
+@function calculateRem($element-size, $root-size) {
+  $remSize: calc($element-size/$root-size);
+  @return #{$remSize}rem;
+}
+
+@function calculateLineHeight($element-size, $line-height) {
+  $lineHeight: calc($line-height/$element-size);
+  @return $lineHeight;
+}
+
+@function toRem($target) {
+  @return math.div($target, 16) * 1rem;
+}

@@ -1,0 +1,325 @@
+******************************
+OOP 
+******************************
+******************************
+
+- Object-oriented programming (OOP) is a programming paradigm based on the concept of objects;
+- We use objects to model (describe) real-world or abstract features;
+- Objects may contain data (properties) and code (methods). By using objects, we pack data and the corresponding behavior into one block;
+- In OOP, objects are self-contained pieces/blocks of code;
+- Objects are building blocks of applications, and interact with one another;
+- Interactions happen through a public interface (API): methods that the code outside of the object can access and use to communicate with the object;
+
+Key Differences:
+Aspect	         Class	                                       Object
+Definition	      A blueprint/template for creating objects	   A specific instance created from a class
+Purpose	         Defines structure and behavior	            Represents a concrete entity
+Instantiation	   Cannot exist alone; used to create objects	Exists in memory and has actual data
+Memory	         Does not consume memory on its own	         Consumes memory (actual object)
+Reusability	      Can be reused to create many objects	      Each object is unique
+Usage	            Used to define templates	                  Used to represent real-world entities
+Example	         class Car	                                 let car1 = new Car('Toyota', 'Corolla')
+Summary:
+Class is a template for defining what objects will look like and how they will behave.
+Object is an instance of a class, with real-world data and methods based on the class definition.
+
+Abstraction: Hiding unnecessary details.
+Encapsulation: Wrapping data and methods into a single unit.
+Inheritance: Creating new classes from existing ones.
+Polymorphism: Allowing objects to be treated as instances of their parent class.
+
+
+**** What is Instantiation?
+Instantiation is the process of creating an instance (a concrete realization) of a class or object in programming. When you define a class, it acts as a blueprint, and instantiating it means creating an object that follows that blueprint.
+
+Key Concepts
+Class: A blueprint or template for creating objects.
+Instance: An actual object created from a class.
+Instantiation in Different Languages
+1. JavaScript
+In JavaScript, instantiation is done using the new keyword with a class or constructor function.
+
+Example using a class:
+javascript
+Kodu kopyala
+class Car {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+
+  display() {
+    console.log(`This car is a ${this.make} ${this.model}.`);
+  }
+}
+
+// Instantiating the class
+const myCar = new Car("Toyota", "Corolla");
+myCar.display(); // Output: This car is a Toyota Corolla.
+Example using a constructor function (older way):
+javascript
+Kodu kopyala
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
+}
+
+Car.prototype.display = function () {
+  console.log(`This car is a ${this.make} ${this.model}.`);
+};
+
+// Instantiating the constructor function
+const myCar = new Car("Honda", "Civic");
+myCar.display(); // Output: This car is a Honda Civic.
+
+Why is Instantiation Important?
+Reusability: Classes provide a reusable blueprint for creating multiple objects.
+Modularity: Separates data (attributes) and behavior (methods) into manageable units.
+Encapsulation: Helps in bundling data and methods together.
+
+**** 
+JavaScript'te `prototype`, `__proto__`, `prototype chain` (prototip zinciri) ve bunların farklarını basit bir şekilde açıklayacak örnek bir tanımlama yapalım. Aklınızda daha kolay kalması için günlük hayattan bir benzetmeyle açıklamaya çalışacağım.
+
+---
+
+### **1. `prototype` Nedir?**
+Her fonksiyonun (constructor fonksiyonlarının) bir `prototype` özelliği vardır. Bu, o fonksiyonla oluşturulan tüm nesnelerin ortak olarak kullanabileceği özellikleri ve metotları barındırır.  
+
+#### Örnek:
+- `prototype` bir "miras" gibidir: Anne-babanızdan size geçen özellikler gibi.
+- Örneğin: 
+
+```javascript
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.sayHello = function () {
+    console.log(`Hello, my name is ${this.name}`);
+};
+
+const person1 = new Person("Raul");
+person1.sayHello(); // Hello, my name is Raul
+```
+
+**Açıklama:**  
+`Person` fonksiyonunun `prototype` özelliğinde `sayHello` metodu tanımlandı. `person1`, `Person` fonksiyonundan türetildiği için bu metodu kullanabilir.
+
+---
+
+### **2. `__proto__` Nedir?**
+Bir nesnenin `__proto__` özelliği, o nesnenin **prototipine** bir referans verir. Bu, nesne hangi "kalıptan" türemişse o kalıbı gösterir.
+
+#### Örnek:
+- `__proto__`, sizin "DNA bağlantınız" gibidir: Kimin soyundan geldiğinizi gösterir.
+
+```javascript
+console.log(person1.__proto__ === Person.prototype); // true
+```
+
+**Açıklama:**  
+`person1.__proto__`, `Person.prototype`'i işaret eder. Bu sayede `person1`, `Person`'ın prototipinde tanımlanan `sayHello` metoduna erişebilir.
+
+---
+
+### **3. `Prototype Chain` Nedir?**
+JavaScript, bir nesne üzerinde bir özellik/metot arandığında önce o nesnenin kendisine bakar. Eğer bulamazsa, `__proto__` ile bağlantılı olduğu üst prototipe bakar. Bu süreç zincirleme olarak devam eder. Bu yapıya **prototype chain** (prototip zinciri) denir.
+
+#### Örnek:
+- Prototip zinciri, "ailenin soy ağacı" gibidir: Önce anneye bakarsınız, orada yoksa büyükanneye gidersiniz.
+
+```javascript
+function Animal(legs) {
+    this.legs = legs;
+}
+
+Animal.prototype.walk = function () {
+    console.log("Walking...");
+};
+
+const dog = new Animal(4);
+dog.walk(); // Walking...
+
+console.log(dog.hasOwnProperty("legs")); // true (dog'un kendi özelliği)
+console.log(dog.hasOwnProperty("walk")); // false (walk prototipten geliyor)
+```
+
+**Açıklama:**  
+- `dog` nesnesi, `walk` metodunu kendi üzerinde bulamaz. Bu yüzden `Animal.prototype`'a bakar ve oradan alır.
+
+---
+
+### **4. `prototype` ve `__proto__` Farkı**
+- **`prototype`:** Sadece constructor fonksiyonlarda bulunur. O fonksiyonla oluşturulan nesneler için prototip özelliklerini tanımlar.  
+- **`__proto__`:** Tüm nesnelerde bulunur. Nesnenin bağlı olduğu prototipi referanslar.
+
+#### Özet:
+- **`prototype`:** "Özellikleri aktaran" bir taslak.
+- **`__proto__`:** "Aktarılan özelliklerin bağlı olduğu yer."
+
+---
+
+### **Kolay Anlaşılabilir Özet Benzetme**
+1. `prototype` = Bir **anne/baba** (miras bırakan).
+2. `__proto__` = Çocukların **bağlantısı** (annesini/babasını işaret ediyor).
+3. `prototype chain` = **Soy ağacı** (nesnelerin özellik/metot arama yolu).
+
+Bu benzetmeyle `prototype` kavramı umarım daha net hale gelir! 
+
+**************************************************************************************************
+
+Evet, doğru anladınız! 🎉
+
+JavaScript'te **prototype inheritance (prototip tabanlı kalıtım)**, geleneksel sınıf (class)-tabanlı kalıtımdan farklıdır. JavaScript'te nesneler, **diğer nesnelerden** miras alır. Bu, "sınıf" kavramı olmadan kalıtımın gerçekleştiği anlamına gelir. Yani:  
+
+**JavaScript'te nesneler prototipten miras alır.**  
+
+---
+
+### **Klasik Sınıf Tabanlı Kalıtım ile Farkı**
+- Geleneksel sınıf-tabanlı dillerde (C++, Java, vb.) sınıflar sınıflardan miras alır. Bir sınıf başka bir sınıfı genişleterek (extend) ondan özellikler/metotlar devralır.
+- JavaScript'te ise her nesne, bir başka nesneyi prototip olarak kullanabilir ve ondan özellik/metot miras alabilir.
+
+---
+
+### **JavaScript Örneği ile Açıklama**
+Prototip tabanlı kalıtımı bir örnekle netleştirelim:
+
+```javascript
+// Bir nesne oluştur
+const animal = {
+    walk() {
+        console.log("Animal is walking");
+    }
+};
+
+// Başka bir nesne yarat ve animal'dan miras al
+const dog = Object.create(animal);
+
+dog.bark = function () {
+    console.log("Dog is barking");
+};
+
+// Kullanım:
+dog.walk(); // Animal is walking (animal'dan miras aldı)
+dog.bark(); // Dog is barking (kendi özelliği)
+```
+
+**Açıklama:**
+- `dog` nesnesi, `animal` nesnesinden türetilmiştir.
+- `dog.walk()` çağrıldığında, JavaScript `dog` nesnesinde `walk` metodunu bulamaz ve `__proto__` ile bağlı olduğu `animal` nesnesine gider.
+
+---
+
+### **Prototip Tabanlı Kalıtımın Mantığı**
+- **JavaScript'te nesneler direkt olarak diğer nesnelerden türeyebilir.**  
+- Bu, **`Object.create`** gibi bir yapı sayesinde yapılır.
+- Nesneler bir prototip zinciri üzerinden özellik/metotları arar.
+
+---
+
+### **Klas-Tabanlı Yaklaşım (ES6 Sonrası)**
+JavaScript ES6 ile **sınıf sözdizimi** (class syntax) ekledi, ancak bu sadece bir **sözdizimi şekeri** (syntactic sugar)'dir. Altında yine prototip tabanlı kalıtım çalışır. Yani JavaScript hâlâ prototip tabanlı bir dil olmaya devam eder.
+
+```javascript
+class Animal {
+    walk() {
+        console.log("Animal is walking");
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log("Dog is barking");
+    }
+}
+
+const dog = new Dog();
+dog.walk(); // Animal is walking (Animal'dan miras)
+dog.bark(); // Dog is barking
+```
+
+---
+
+### **Sonuç**
+- **JavaScript'te nesneler prototiplerden miras alır.**
+- **Sınıf kavramı**, JavaScript'te geleneksel dillerdeki gibi temel bir yapı değil, yalnızca bir kullanımı kolaylaştırma aracıdır.
+- Temel fark: Geleneksel dillerde sınıflar sınıflardan miras alır, JavaScript'te ise **nesneler diğer nesnelerden** miras alır.
+
+****************************************************************
+Evet, doğru! Hem **class** (sınıf) hem de **prototype** bir nesne için **şablon görevi** görür, ancak bunu farklı şekillerde gerçekleştirirler. İkisinin de amacı, nesneler arasında ortak özellikler ve davranışlar paylaşmak, ancak altta yatan mekanizmaları biraz farklıdır.
+
+---
+
+### **1. Class: Nesne Şablonu (ES6 ile Gelen Sözdizimi)**
+- **Class**, geleneksel anlamda bir "şablon" gibi çalışır. 
+- Sınıfı tanımlarsınız, o sınıftan nesneler oluşturursunuz. Sınıfta tanımlanan özellik ve metotlar, türetilen her nesneye miras kalır.
+
+#### Örnek:
+```javascript
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    speak() {
+        console.log(`${this.name} makes a sound.`);
+    }
+}
+
+const dog = new Animal("Dog");
+dog.speak(); // Dog makes a sound.
+```
+
+**Açıklama:**
+- `Animal` sınıfı bir şablondur.
+- `dog` nesnesi, `Animal` şablonundan türetilmiştir ve şablondaki `speak` metodunu miras alır.
+
+---
+
+### **2. Prototype: Nesne için Şablon**
+- Prototipler de bir şablon görevi görür. 
+- Ancak sınıflar gibi bir sözdiziminden ziyade, nesnelerin kendi **bağlı olduğu bir prototip** üzerinden özellik/metot mirası almasını sağlar.
+- JavaScript'in temelinde, aslında her şey **prototype tabanlıdır.**
+
+#### Örnek:
+```javascript
+function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.speak = function () {
+    console.log(`${this.name} makes a sound.`);
+};
+
+const dog = new Animal("Dog");
+dog.speak(); // Dog makes a sound.
+```
+
+**Açıklama:**
+- `Animal.prototype`, şablon görevi görür. `speak` metodu burada tanımlanır.
+- `dog` nesnesi, bu prototipi kullanarak `speak` metoduna erişir.
+
+---
+
+### **Class ve Prototype Arasındaki Benzerlik**
+- **Class ve prototype**, her ikisi de nesneler için bir **şablon** görevi görür.  
+- İkisinde de tanımlanan özellikler ve metotlar, türetilen nesnelere miras kalır.
+
+---
+
+### **Class ve Prototype Arasındaki Fark**
+1. **Sözdizimi:**
+   - `class` daha okunabilir ve modern bir sözdizimi sunar (ES6 ile eklenmiştir).
+   - `prototype` daha eski bir yöntemdir ve daha az sezgiseldir.
+
+2. **Temel Fark:**
+   - **Class**: Sınıf-tabanlı bir sistem gibi görünse de altta aslında **prototip-tabanlı** kalıtım çalışır. Yani, sınıf kullanılsa bile JavaScript hâlâ prototiplerle çalışır.
+   - **Prototype**: Nesneler arasında doğrudan ilişki kurar, sınıf gibi bir aracı yapıya gerek yoktur.
+
+---
+
+### **Sonuç**
+Evet, **class** da, **prototype** da nesneler için bir şablon görevi görür. Ancak unutulmamalı ki JavaScript'in temelinde **prototip tabanlı bir yapı** vardır. `class`, sadece bu yapıyı daha kullanıcı dostu bir şekilde sunar. Yani, class'lar prototiplerin üstüne inşa edilmiştir. 😊
+
+***********************************************************************************

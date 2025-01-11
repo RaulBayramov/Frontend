@@ -5,11 +5,13 @@
 }
 
 body {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+html {
+    position: relative;
+}
 
 header {
     box-shadow: 0 5px 10px rgba(150, 150, 150, 0.5);
@@ -28,10 +30,12 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: start;
     width: 100%;
     position: relative;
     height: fit-content;
     gap: 20px;
+    flex: 1;
 }
 
 .cart-courses {
@@ -56,6 +60,8 @@ header {
     margin-bottom: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    max-height: 120px;
 }
 
 .course-quantity {
@@ -115,7 +121,8 @@ header {
 
 .thumbnail {
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
 }
 
 .video-info-grid {
@@ -214,6 +221,7 @@ header {
 .checkout-button:active {
     opacity: .5;
 }
+
 
 @media (min-width: 825px) {
     .paymant-summary {

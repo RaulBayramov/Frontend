@@ -1,0 +1,62 @@
+@use "sass:math";
+
+@mixin title-main() {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@mixin title-custom(
+  $font-size,
+  $font-name,
+  $line-height,
+  $letter-spacing,
+  $color
+) {
+  color: $color;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-family: $font-name;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+}
+
+@mixin shadow($blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset 0px 0px $blur $color;
+    -moz-box-shadow: inset 0px 0px $blur $color;
+    box-shadow: inset 0px 0px $blur $color;
+  } @else {
+    -webkit-box-shadow: 0px 0px $blur $color;
+    -moz-box-shadow: 0px 0px $blur $color;
+    box-shadow: 0px 0px $blur $color;
+  }
+}
+
+@mixin transition($command, $time, $effect) {
+  -webkit-transition: $command $time $effect;
+  -moz-transition: $command $time $effect;
+  -o-transition: $command $time $effect;
+  transition: $command $time $effect;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::placeholder {
+    @content;
+  }
+}
+
+@mixin responsive-media($point) {
+  @media screen and (max-width: $point) {
+    @content;
+  }
+}
