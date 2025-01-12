@@ -4,11 +4,11 @@ class SpecialHeader extends HTMLElement {
         this.innerHTML = `
     <header>
         <div class="navbar">
-            <div class="logo"><a href="./HomePage.html">eRBe</a></div>
+            <div class="logo"><a href="./index.html">eRBe</a></div>
             <ul class="links">
-                <li><a href="./HomePage.html">Home</a></li>
+                <li><a href="./index.html">Home</a></li>
                 <li><a href="about_as.html">About</a></li>
-                <li><a href="services">Services</a></li>
+                <li><a href="services">My learnings</a></li>
                 <li><a href="contactForm.html">Contact</a></li>
             </ul>
             <div class="search-container">
@@ -28,7 +28,7 @@ class SpecialHeader extends HTMLElement {
             <div class="toggle_btn"><i class="fa-solid fa-bars"></i></div>
         </div>
         <div class="dropdown_menu">
-            <li><a href="./HomePage.html">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
             <li><a href="about_as.html">About</a></li>
             <li><a href="services">Services</a></li>
             <li><a href="contactForm.html">Contact</a></li>
@@ -48,7 +48,7 @@ class SpecialFooter extends HTMLElement {
             <ul>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="contactForm.html">Contact</a></li>
             </ul>
         </div>
     </footer>

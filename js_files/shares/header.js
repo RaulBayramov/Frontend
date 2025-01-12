@@ -8,6 +8,7 @@ export function header() {
     const toogleBtnIcon = document.querySelector(".toggle_btn i");
     const dropDownMenu = document.querySelector(".dropdown_menu");
     const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-button');
 
     //change places of elements when width <=992px
     function rearangeElements() {
@@ -50,10 +51,16 @@ export function header() {
             logo.style.display = "none";
         }
     })
-    searchContainer.addEventListener('mouseout', () => {
+    searchButton.addEventListener('click', () => {
         logo.style.display = "block";
         updateSearchInputWidth()
     })
+    document.addEventListener("click", (event) => {
+        if (!searchContainer.contains(event.target)) {
+            logo.style.display = "block";
+            updateSearchInputWidth();
+        }
+    });
     window.addEventListener('load', updateSearchInputWidth);
     window.addEventListener('resize', updateSearchInputWidth);
 

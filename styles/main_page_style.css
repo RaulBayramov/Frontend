@@ -265,6 +265,16 @@ header {
     bottom: 0px;
 }
 
+.about,
+.services,
+.blog {
+    padding-left: 0.5rem;
+}
+
+.logo {
+    width: 50px;
+}
+
 @media (min-width: 768px) {
     .login_button {
         padding: 16px 45px;
@@ -300,6 +310,10 @@ header {
         transform: scale(0.95);
         gap: 0;
     }
+
+    .video-preview {
+        margin-bottom: 0px;
+    }
 }
 
 @media(max-width: 576px) {
@@ -328,6 +342,10 @@ header {
         display: flex;
         justify-content: space-between;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .button-container {
+        transform: scale(0.9);
     }
 }
 

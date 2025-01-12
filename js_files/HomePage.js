@@ -72,9 +72,11 @@ document.querySelectorAll(".js-add-button").forEach((button) => {
 
 function resize() {
     const row = document.querySelector(".video-grid");
+    const main = document.querySelector('main');
     if (window.innerWidth <= 705 && window.innerWidth >= 375) {
+        main.style.padding = '0px'
         const rowWidth = parseFloat(window.getComputedStyle(row).width); // "px" biriminden arındırıldı
-        const marginLeftValue = (window.innerWidth - rowWidth) / 2;
+        const marginLeftValue = ((window.innerWidth - rowWidth) / 2);
         row.style.marginLeft = `${marginLeftValue}px`;
     }
     else {
