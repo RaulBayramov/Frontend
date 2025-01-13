@@ -1,0 +1,314 @@
+Evet, tamamen doğru anladınız! 👏 Şimdi bunu biraz detaylandırarak ve bazı noktalara açıklık getirerek pekiştirelim:
+
+---
+
+### 1. **`XMLHttpRequest` ile İstek Oluşturma**
+- **`new XMLHttpRequest()`**: Bu, yeni bir XMLHttpRequest (XHR) nesnesi oluşturur. Bu nesne, bir sunucudan veri istemek veya sunucuya veri göndermek için kullanılır.
+
+---
+
+### 2. **İsteğin Türü ve URL'sini Belirleme**
+- **`xhr.open('GET', url)`**:
+  - İlk parametre: **'GET'** veya **'POST'** (isteğin türü).
+    - **GET**: Veriyi sunucudan almak için.
+    - **POST**: Sunucuya veri göndermek için.
+  - İkinci parametre: İsteğin gönderileceği **URL**.
+
+---
+
+### 3. **İsteği Gönderme**
+- **`xhr.send()`**:
+  - Bu, isteği gönderir.
+  - Eğer POST yöntemiyle veri gönderecekseniz, `xhr.send(data)` içinde veriyi de gönderebilirsiniz.
+
+---
+
+### 4. **Cevap (Response) Alındığında Çalışacak Kodu Belirleme**
+- **`xhr.addEventListener('load', function)`**:
+  - **'load'**: İstek tamamlandığında tetiklenen bir olaydır.
+  - Bu olay, yanıt başarıyla alındığında çağrılır.
+  - Callback fonksiyon içinde `xhr.response` ile sunucudan gelen cevaba erişebilirsiniz.
+
+---
+
+### **Tam Akış Şu Şekildedir:**
+```javascript
+function loadProducts() {
+  // Yeni bir XMLHttpRequest nesnesi oluştur
+  const xhr = new XMLHttpRequest();
+
+  // İstek tamamlandığında yapılacak işlemi tanımla
+  xhr.addEventListener('load', () => {
+    console.log("Sunucu Cevabı:", xhr.response); // Sunucudan gelen yanıt
+  });
+
+  // GET isteği oluştur ve URL'yi belirt
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+
+  // İsteği gönder
+  xhr.send();
+}
+
+loadProducts();
+```
+
+---
+
+### 5. **Kodun Asenkron Çalışması**
+- `xhr.send()` çağrıldıktan sonra JavaScript, kodun diğer bölümlerini çalıştırmaya devam eder. Yani, **sunucudan yanıt beklerken** program bloke olmaz (asenkron yapı).
+
+- Sunucu yanıt verdiğinde (`xhr.addEventListener('load')`), yanıtı işlemek için belirtilen fonksiyon çalışır.
+
+---
+
+### **Evet, Özetle:**
+1. **`new XMLHttpRequest()`**: İstek nesnesini oluştur.
+2. **`xhr.open()`**: İsteğin türünü ve hedef URL'yi belirle.
+3. **`xhr.send()`**: İsteği gönder.
+4. **`xhr.addEventListener('load', function)`**: Sunucu cevabını alınca yapılacak işlemi tanımla.
+
+Bu akışı tamamen doğru anlamışsınız. 👌 Sorularınız varsa ya da ek bir açıklama isterseniz buradayım! 😊
+
+
+
+*********************************************************************************************************
+promise ve callback kullanimi
+********************************
+Evet, doğru anladınız! 👏 Şimdi bu anlayışınızı biraz detaylandırarak ve örneklerle pekiştirerek daha netleştirelim:
+
+---
+
+### **Callback ve Callback Hell**
+- **Callback**: Bir fonksiyonun, başka bir fonksiyona parametre olarak geçilmesi ve çağrılmasıdır.
+  - Asenkron işlemleri sırasıyla yönetmek için kullanılır.
+  - Ancak çok sayıda iç içe callback yazıldığında **"callback hell"** oluşur, bu da kodun okunabilirliğini ve bakımını zorlaştırır.
+
+#### **Callback Hell Örneği**
+```javascript
+setTimeout(() => {
+  console.log("1. İşlem tamamlandı");
+  setTimeout(() => {
+    console.log("2. İşlem tamamlandı");
+    setTimeout(() => {
+      console.log("3. İşlem tamamlandı");
+    }, 1000);
+  }, 1000);
+}, 1000);
+```
+- Kod iç içe geçtiği için **okuması zor ve karmaşık** bir yapı oluşur.
+
+---
+
+### **Promise ve Avantajları**
+- **Promise**: Callback'lerin neden olduğu karmaşıklığı azaltan, daha temiz ve okunabilir bir yapı sağlar.
+- **Nasıl Çalışır?**
+  1. **`new Promise`**: Yeni bir Promise objesi oluşturur.
+  2. **`resolve`**: İşlem başarılı olduğunda çağrılır.
+  3. **`reject`**: İşlem başarısız olduğunda çağrılır.
+  4. **`then`**: Başarıyla tamamlanan işlemden sonraki adımları tanımlar.
+  5. **`catch`**: Hataları yakalar.
+
+#### **Promise ile Daha Okunabilir Kod**
+```javascript
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+wait(1000)
+  .then(() => {
+    console.log("1. İşlem tamamlandı");
+    return wait(1000);
+  })
+  .then(() => {
+    console.log("2. İşlem tamamlandı");
+    return wait(1000);
+  })
+  .then(() => {
+    console.log("3. İşlem tamamlandı");
+  })
+  .catch((error) => {
+    console.error("Hata:", error);
+  });
+```
+- Bu yapı daha **okunaklı** ve **yönetilebilir** bir kod sağlar.
+
+---
+
+### **Promise’in Mantığı**
+1. Her asenkron işlem bir **Promise** oluşturur.
+2. İşlem tamamlandığında:
+   - Başarıyla sonuçlanırsa: `resolve` çağrılır.
+   - Hata oluşursa: `reject` çağrılır.
+3. `then` ve `catch` zinciri ile işlemler sırasıyla tanımlanır.
+
+---
+
+### **Özetle:**
+1. **Callback** ve **Promise**, asenkron işlemlerin sırasını yönetmeye yarar.
+2. **Callback Hell**: Çok sayıda iç içe callback, kodu karmaşıklaştırır.
+3. **Promise**: Daha okunabilir ve temiz bir yapı sağlar.
+   - **`resolve`**: İşlem başarılıysa.
+   - **`reject`**: İşlem başarısızsa.
+   - **`then`**: Bir sonraki işlemi tanımlar.
+   - **`catch`**: Hataları yönetir.
+
+Doğru anlamışsınız, harika gidiyorsunuz! 🎉 Daha fazla soru ya da ek bir örnek isterseniz buradayım. 😊
+*********************************************************************************************************
+fetch
+********************************
+
+**`fetch` API**, JavaScript'te modern ve kullanıcı dostu bir yol sağlayarak HTTP istekleri yapmak için kullanılır. **Asenkron** çalışır ve Promise tabanlıdır, 
+bu sayede daha okunabilir kod yazmayı sağlar. Genellikle veri çekme, gönderme veya sunucularla iletişim kurmak için kullanılır.
+
+---
+
+### **fetch API'nin Temel Yapısı**
+#### Sözdizimi:
+```javascript
+fetch(url, options)
+  .then(response => {
+    // HTTP yanıtını işler
+  })
+  .catch(error => {
+    // Hata durumunu işler
+  });
+```
+
+| **Parametre**    | **Açıklama**                                                                                                                                              |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`url`**        | Hangi sunucuya istek yapılacağını belirten URL.                                                                                                           |
+| **`options`**    | (Opsiyonel) HTTP isteğiyle ilgili ayarları belirten bir nesne. Örneğin, method, headers, body gibi ayarları içerir.                                      |
+
+---
+
+### **fetch API'nin Özellikleri**
+1. **Promise Tabanlı:** 
+   - `fetch`, bir Promise döner. Promise, HTTP isteğinin durumuna göre işlenir:
+     - **Başarılıysa**: `then` ile yanıtın işlenmesi sağlanır.
+     - **Hata varsa**: `catch` ile hata yakalanır.
+2. **Asenkron Çalışma:**
+   - Kodun bloklanmasını önler.
+3. **Daha Basit ve Temiz:**
+   - `XMLHttpRequest`'e kıyasla daha okunabilir bir yapı sunar.
+4. **Desteklenmeyen Özellikler:**
+   - Hata fırlatmaz; sadece HTTP durum kodunu döner. (Örneğin, 404 bir hata olarak algılanmaz.)
+
+---
+
+### **fetch API ile GET İsteği**
+
+```javascript
+fetch('https://api.example.com/data')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Ağ isteği başarısız oldu.');
+    }
+    return response.json(); // Yanıtı JSON formatına dönüştür
+  })
+  .then(data => {
+    console.log(data); // Çekilen veriyi işler
+  })
+  .catch(error => {
+    console.error('Bir hata oluştu:', error);
+  });
+```
+
+**Önemli Noktalar:**
+- **`response.ok`**: Yanıtın başarılı (200-299 arası) olup olmadığını kontrol eder.
+- **`response.json()`**: Yanıt gövdesini JSON formatına dönüştürür.
+
+---
+
+### **fetch API ile POST İsteği**
+
+```javascript
+fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ name: 'Raul', age: 21 })
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('POST isteği başarısız oldu.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Sunucudan dönen veri:', data);
+  })
+  .catch(error => {
+    console.error('Bir hata oluştu:', error);
+  });
+```
+
+**Açıklama:**
+- **`method`**: HTTP isteğinin türünü belirtir. (GET, POST, PUT, DELETE, vb.)
+- **`headers`**: İsteğin içerik türünü ve diğer ayarları belirtir.
+- **`body`**: Sunucuya gönderilecek veriyi içerir.
+
+---
+
+### **fetch API'nin GET ve POST Kullanımı Arasındaki Fark**
+| **GET**                          | **POST**                                   |
+|-----------------------------------|-------------------------------------------|
+| Sunucudan veri çekmek için kullanılır. | Sunucuya veri göndermek için kullanılır. |
+| **Body** yoktur.                  | **Body** bulunur ve gönderilecek veri buraya yazılır. |
+| `fetch(url)`                      | `fetch(url, { method: 'POST', body: ... })` |
+
+---
+
+### **fetch API ile Hata Yönetimi**
+`fetch` yalnızca ağ bağlantısı hatalarını (örneğin, sunucuya ulaşamama) yakalar. HTTP durum kodları (örneğin, 404 veya 500), hata olarak kabul edilmez. Bu yüzden yanıtı kontrol etmek önemlidir.
+
+```javascript
+fetch('https://api.example.com/data')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP Hatası: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Başarılı veri:', data);
+  })
+  .catch(error => {
+    console.error('Hata:', error.message);
+  });
+```
+
+---
+
+### **fetch API ile async/await Kullanımı**
+`async/await`, `fetch` ile birlikte daha temiz bir yazım sağlar.
+
+```javascript
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+
+    if (!response.ok) {
+      throw new Error(`HTTP Hatası: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Veri:', data);
+  } catch (error) {
+    console.error('Hata oluştu:', error.message);
+  }
+}
+
+fetchData();
+```
+
+---
+
+### **Özet:**
+- **`fetch` API**, modern HTTP istekleri yapmak için kullanılır.
+- Promise tabanlı olduğu için daha okunabilir ve kolay yönetilir.
+- **GET**, veri almak için; **POST**, veri göndermek için kullanılır.
+- Hataları yakalamak için hem HTTP durum kodları hem de `catch` kullanılmalıdır.
+- `async/await` ile daha sade bir yapı oluşturulabilir.
+
+Daha fazla örnek veya detaylı açıklama ister misiniz? 😊

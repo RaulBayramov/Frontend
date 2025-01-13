@@ -8,7 +8,7 @@ class SpecialHeader extends HTMLElement {
             <ul class="links">
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="about_as.html">About</a></li>
-                <li><a href="services">My learnings</a></li>
+                <li><a href="courses.html">Courses</a></li>
                 <li><a href="contactForm.html">Contact</a></li>
             </ul>
             <div class="search-container">
