@@ -41,7 +41,6 @@ export function header() {
         }
         else {
             searchContainer.style.width = (window.innerWidth * 0.25) + 'px';
-
         }
     }
     searchContainer.addEventListener('click', (event) => {

@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "nodemon": "^3.1.9",
+    "slugify": "^1.6.6"
+  },
+  "name": "frontend_project",
+  "version": "1.0.0",
+  "main": "coursesNode.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "raul",
+  "license": "ISC",
+  "description": ""
+}

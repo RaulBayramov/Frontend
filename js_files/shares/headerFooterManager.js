@@ -30,7 +30,7 @@ class SpecialHeader extends HTMLElement {
         <div class="dropdown_menu">
             <li><a href="./index.html">Home</a></li>
             <li><a href="about_as.html">About</a></li>
-            <li><a href="services">Services</a></li>
+            <li><a href="courses.html">Courses</a></li>
             <li><a href="contactForm.html">Contact</a></li>
             <li><button class="button-35"><a href="page_of_login.html" class="action_btn">Login</a></button></li>
         </div>
